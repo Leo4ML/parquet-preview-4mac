@@ -1,0 +1,67 @@
+body {
+    font-family: var(--vscode-font-family);
+    padding: 10px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid var(--vscode-panel-border);
+}
+
+th {
+    background-color: var(--vscode-editor-background);
+    position: sticky;
+    top: 0;
+    font-weight: bold;
+    color: var(--vscode-editor-foreground);
+}
+
+tr:nth-child(even) {
+    background-color: var(--vscode-list-hoverBackground);
+}
+
+tr:hover {
+    background-color: var(--vscode-list-activeSelectionBackground);
+    color: var(--vscode-list-activeSelectionForeground);
+}
+
+#loader {
+    font-size: 1.2em;
+    color: var(--vscode-descriptionForeground);
+}
+
+#pagination-container {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--vscode-editor-background);
+    border-top: 1px solid var(--vscode-panel-border);
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+button {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--vscode-button-hoverBackground);
+}
