@@ -1,7 +1,7 @@
 {
   "name": "parquet-preview-4mac",
   "displayName": "Parquet Preview 4 Mac",
-  "publisher": "Leo4ML",
+  "publisher": "TheSuperLeo",
   "repository": {
     "type": "git",
     "url": "https://github.com/Leo4ML/parquet-preview-4mac.git"
@@ -9,13 +9,14 @@
   "description": "Preview Parquet files in VS Code",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.80.0"
+    "vscode": "^1.60.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCustomEditor:parquet.viewer"
+    "onCustomEditor:parquet.viewer",
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -38,8 +39,8 @@
     "watch": "tsc -watch -p ./"
   },
   "devDependencies": {
-    "@types/vscode": "^1.80.0",
     "@types/node": "18.x",
+    "@types/vscode": "^1.60.0",
     "typescript": "^5.0.0"
   },
   "dependencies": {

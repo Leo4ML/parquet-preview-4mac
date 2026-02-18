@@ -35,7 +35,7 @@ Run the following commands in your terminal:
 
 ```bash
 # Login (you will be prompted for your PAT)
-npx vsce login <publisher id>
+npx vsce login TheSuperLeo
 
 # Publish
 npx vsce publish

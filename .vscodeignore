@@ -1,0 +1,15 @@
+.vscode/**
+.vscode-test/**
+src/**
+.gitignore
+.git/**
+vsc-extension-quickstart.md
+tsconfig.json
+**/*.map
+**/*.ts
+!out/**
+!package.json
+!README.md
+!PUBLISHING.md
+!deploy.sh
+!media/**

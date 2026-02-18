@@ -34,6 +34,9 @@ export class ParquetEditorProvider implements vscode.CustomReadonlyEditorProvide
         this.outputChannel.appendLine("Resolving custom editor...");
         webviewPanel.webview.options = {
             enableScripts: true,
+            localResourceRoots: [
+                vscode.Uri.joinPath(this.context.extensionUri, 'media')
+            ]
         };
 
         webviewPanel.webview.html = this.getHtmlForWebview(webviewPanel.webview);
@@ -57,6 +60,8 @@ export class ParquetEditorProvider implements vscode.CustomReadonlyEditorProvide
 
     private async updateWebview(uri: vscode.Uri, webview: vscode.Webview, page: number, limit: number) {
         this.outputChannel.appendLine(`Updating webview for page ${page}...`);
+        this.outputChannel.appendLine(`Document URI: ${uri.toString()} (Scheme: ${uri.scheme})`);
+        
         try {
             this.outputChannel.appendLine("Reading parquet file...");
             const { rows, total } = await this.readParquetFile(uri, page, limit);
@@ -107,11 +112,11 @@ export class ParquetEditorProvider implements vscode.CustomReadonlyEditorProvide
                     if (typeof value === 'bigint') {
                         // Check if it looks like a nanosecond timestamp
                         // e.g., 2026 is approx 1.77e18
-                        if (value > 1000000000000000000n) {
+                        if (value > BigInt("1000000000000000000")) {
                              // Nanoseconds -> Milliseconds
-                             const ms = Number(value / 1000000n);
+                             const ms = Number(value / BigInt(1000000));
                              processedRecord[key] = new Date(ms).toLocaleDateString();
-                        } else if (value > 1000000000000n) {
+                        } else if (value > BigInt("1000000000000")) {
                              // Milliseconds
                              processedRecord[key] = new Date(Number(value)).toLocaleString();
                         } else {
@@ -136,8 +141,8 @@ export class ParquetEditorProvider implements vscode.CustomReadonlyEditorProvide
     }
 
     private getHtmlForWebview(webview: vscode.Webview): string {
-        const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri, 'src', 'media', 'parquet.js'));
-        const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri, 'src', 'media', 'parquet.css'));
+        const scriptUri = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri, 'media', 'parquet.js'));
+        const styleUri = webview.asWebviewUri(vscode.Uri.joinPath(this.context.extensionUri, 'media', 'parquet.css'));
         const nonce = getNonce();
 
         return `
