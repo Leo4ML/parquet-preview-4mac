@@ -29,10 +29,12 @@ A VS Code extension to preview Apache Parquet files directly in your editor.
 ## Installation
 
 ### From Marketplace
-(Coming Soon)
+Search for `parquet-preview-4mac` in the Extensions view, or install directly:
+- **VS Code Marketplace**: [Install](https://marketplace.visualstudio.com/items?itemName=TheSuperLeo.parquet-preview-4mac)
+- **Open VSX Registry**: [Install](https://open-vsx.org/extension/TheSuperLeo/parquet-preview-4mac)
 
 ### Manual Installation
-1.  Download the `.vsix` file.
+1.  Download the `.vsix` from the [Releases](https://github.com/Leo4ML/parquet-preview-4mac/releases) page.
 2.  In VS Code, go to **Extensions** > **...** > **Install from VSIX**.
 3.  Select the file and install.
 
