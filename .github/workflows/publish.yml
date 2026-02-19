@@ -33,7 +33,7 @@ jobs:
           if [ -z "$OVSX_PAT" ]; then echo "OVSX_PAT is empty"; else echo "OVSX_PAT is set (length: ${#OVSX_PAT})"; fi
         
       - name: Create Release Artifact (VSIX)
-        run: npx vsce package --no-dependencies
+        run: npx vsce package
         
       - name: Publish to VS Code Marketplace
         continue-on-error: true
