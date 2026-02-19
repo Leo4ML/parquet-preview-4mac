@@ -34,7 +34,7 @@ jobs:
         run: ovsx publish -p ${{ secrets.OVSX_PAT }}
         
       - name: Create Release Artifact (VSIX)
-        run: vsce package
+        run: yes | vsce package
         
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
