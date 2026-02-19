@@ -32,6 +32,9 @@ jobs:
           if [ -z "$VSCE_PAT" ]; then echo "VSCE_PAT is empty"; else echo "VSCE_PAT is set (length: ${#VSCE_PAT})"; fi
           if [ -z "$OVSX_PAT" ]; then echo "OVSX_PAT is empty"; else echo "OVSX_PAT is set (length: ${#OVSX_PAT})"; fi
         
+      - name: Create Release Artifact (VSIX)
+        run: npx vsce package --no-dependencies
+        
       - name: Publish to VS Code Marketplace
         continue-on-error: true
         run: npx vsce publish -p ${{ secrets.VSCE_PAT }} --packagePath *.vsix
@@ -39,9 +42,6 @@ jobs:
       - name: Publish to Open VSX Registry
         continue-on-error: true
         run: npx ovsx publish -p ${{ secrets.OVSX_PAT }} --packagePath *.vsix
-        
-      - name: Create Release Artifact (VSIX)
-        run: npx vsce package --no-dependencies
         
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
