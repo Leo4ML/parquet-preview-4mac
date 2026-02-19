@@ -22,19 +22,24 @@ jobs:
       - name: Compile
         run: npm run compile
         
-      - name: Install VSCE & OVSX
-        run: npm install -g @vscode/vsce ovsx
+      - name: Check Secrets
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then echo "VSCE_PAT is empty"; else echo "VSCE_PAT is set (length: ${#VSCE_PAT})"; fi
+          if [ -z "$OVSX_PAT" ]; then echo "OVSX_PAT is empty"; else echo "OVSX_PAT is set (length: ${#OVSX_PAT})"; fi
         
       - name: Publish to VS Code Marketplace
         continue-on-error: true
-        run: vsce publish -p ${{ secrets.VSCE_PAT }}
+        run: npx vsce publish -p ${{ secrets.VSCE_PAT }} --packagePath *.vsix
         
       - name: Publish to Open VSX Registry
         continue-on-error: true
-        run: ovsx publish -p ${{ secrets.OVSX_PAT }}
+        run: npx ovsx publish -p ${{ secrets.OVSX_PAT }} --packagePath *.vsix
         
       - name: Create Release Artifact (VSIX)
-        run: yes | vsce package
+        run: npx vsce package --no-dependencies
         
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v1
