@@ -16,8 +16,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCustomEditor:parquet.viewer",
-    "*"
+    "onCustomEditor:parquet.viewer"
   ],
   "main": "./out/extension.js",
   "contributes": {
