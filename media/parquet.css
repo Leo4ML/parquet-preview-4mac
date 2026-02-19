@@ -65,3 +65,10 @@ button:disabled {
 button:hover:not(:disabled) {
     background-color: var(--vscode-button-hoverBackground);
 }
+
+input[type="number"] {
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-input-border);
+    padding: 3px;
+}

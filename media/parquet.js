@@ -98,9 +98,36 @@ function renderPagination() {
     const infoSpan = document.createElement('span');
     infoSpan.innerText = ` Page ${currentPage} of ${maxPage} (Total: ${totalRows}) `;
 
+    const pageInput = document.createElement('input');
+    pageInput.type = 'number';
+    pageInput.min = 1;
+    pageInput.max = maxPage;
+    pageInput.value = currentPage;
+    pageInput.style.width = '50px';
+    pageInput.style.marginLeft = '10px';
+    
+    const goBtn = document.createElement('button');
+    goBtn.innerText = 'Go';
+    goBtn.onclick = () => {
+        const page = parseInt(pageInput.value);
+        if (page >= 1 && page <= maxPage) {
+            loadPage(page);
+        } else {
+            alert(`Please enter a page number between 1 and ${maxPage}`);
+        }
+    };
+
     paginationContainer.appendChild(prevBtn);
     paginationContainer.appendChild(infoSpan);
     paginationContainer.appendChild(nextBtn);
+    
+    // Jump controls
+    const jumpContainer = document.createElement('span');
+    jumpContainer.style.marginLeft = '20px';
+    jumpContainer.innerText = 'Jump to: ';
+    jumpContainer.appendChild(pageInput);
+    jumpContainer.appendChild(goBtn);
+    paginationContainer.appendChild(jumpContainer);
 }
 
 function loadPage(page) {

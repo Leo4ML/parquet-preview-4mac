@@ -1,15 +1,19 @@
 # Parquet Preview 4 Mac
 
-A VS Code extension to preview Apache Parquet files directly in your editor. Optimized for macOS.
+A VS Code extension to preview Apache Parquet files directly in your editor. 
+**Specially optimized for macOS and Antigravity IDE.**
 
 ## Features
 
 - **Data Grid View**: Displays Parquet file content in a clean, readable table.
-- **Pagination**: Handle large files efficiently with built-in pagination (50 rows per page).
+- **Pagination**: 
+    - Handle large files efficiently with built-in pagination (50 rows per page).
+    - **Jump to Page**: Quickly navigate to any page using the new input control.
 - **Smart Formatting**: 
     - Automatically detects nanosecond timestamps and formats them to readable date strings (e.g., `2026/2/13`).
-    - Handles BigInts correctly to prevent extension crashes.
+    - Handles BigInts correctly to prevent extension crashes (ES2019 compatible).
 - **Pure JavaScript**: Built with `parquetjs-lite`, requiring no external dependencies like Python or Java.
+- **Antigravity Ready**: Tested and optimized for Antigravity on macOS.
 
 ## Requirements
 

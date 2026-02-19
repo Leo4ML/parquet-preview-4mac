@@ -1,0 +1,43 @@
+name: Publish Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Compile
+        run: npm run compile
+        
+      - name: Install VSCE & OVSX
+        run: npm install -g @vscode/vsce ovsx
+        
+      - name: Publish to VS Code Marketplace
+        continue-on-error: true
+        run: vsce publish -p ${{ secrets.VSCE_PAT }}
+        
+      - name: Publish to Open VSX Registry
+        continue-on-error: true
+        run: ovsx publish -p ${{ secrets.OVSX_PAT }}
+        
+      - name: Create Release Artifact (VSIX)
+        run: vsce package
+        
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: "*.vsix"
