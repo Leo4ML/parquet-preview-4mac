@@ -7,7 +7,7 @@
     "url": "https://github.com/Leo4ML/parquet-preview-4mac.git"
   },
   "description": "Preview Parquet files in VS Code",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "engines": {
     "vscode": "^1.60.0"
